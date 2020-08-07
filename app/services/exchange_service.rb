@@ -9,7 +9,7 @@ class ExchangeService
     @target_currency = target_currency
     @amount = amount.to_f
   end
-  ​
+
   def call
     value = get_exchange
     value * @amount
