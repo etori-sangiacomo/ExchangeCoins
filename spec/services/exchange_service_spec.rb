@@ -30,5 +30,7 @@ describe ExchangeService do
     service_exchange = ExchangeService.new('USD', 'BRL', amount).call
     expected_exchange = amount * exchange_value
     expect(service_exchange).to eq expected_exchange
+    expect(expected_exchange.is_a?(Numeric)).to eql(true)
+    expect(service_exchange.is_a?(Numeric)).to eql(true)
   end
 end
