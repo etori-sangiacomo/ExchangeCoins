@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'json'
 require './app/services/exchange_service'
-​
+
 describe ExchangeService do
   let(:source_currency) { 'USD' }
   let(:target_currency) { 'BRL' }
@@ -20,15 +20,17 @@ describe ExchangeService do
       ]
     }
   end
-  ​
+
   before do
     allow(RestClient).to receive(:get) { OpenStruct.new(body: api_return.to_json) }
   end
-  ​
+
   it '#call' do
     amount = rand(0..9999)
     service_exchange = ExchangeService.new('USD', 'BRL', amount).call
     expected_exchange = amount * exchange_value
     expect(service_exchange).to eq expected_exchange
+    expect(expected_exchange.is_a?(Numeric)).to eql(true)
+    expect(service_exchange.is_a?(Numeric)).to eql(true)
   end
 end
